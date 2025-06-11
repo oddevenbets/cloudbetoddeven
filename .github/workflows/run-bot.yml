@@ -1,25 +1,16 @@
-name: Run CSGO OddEven Bot Every 10 Min
+name: Run CSGO Bot
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'  # Every 10 minutes
-  workflow_dispatch:        # Allows manual trigger in GitHub UI
+    - cron: "*/10 * * * *"  # Every 10 minutes
 
 jobs:
-  run-bot:
-    runs-on: ubuntu-latest
-
+  run-oddeven:
+    runs-on: self-hosted
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Run betting bot
+      - name: Run script
         run: python oddeven.py
