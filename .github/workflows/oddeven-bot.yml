@@ -1,0 +1,16 @@
+name: Run OddEven Cloudbet Bot
+
+on:
+  workflow_dispatch:  # Allows manual run
+  schedule:
+    - cron: "*/10 * * * *"  # Runs every 10 minutes
+
+jobs:
+  run-oddeven:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run OddEven Bot
+        run: python oddeven.py
