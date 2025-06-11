@@ -1,7 +1,7 @@
-from flask import Flask
 import logging
 import threading
-from oddeven import main  # This imports and reuses your existing code
+from flask import Flask
+from oddeven import main
 
 app = Flask(__name__)
 
@@ -11,9 +11,6 @@ def index():
 
 @app.route("/run-bot")
 def run_bot():
-    logging.info("🎯 Bot triggered from web!")
+    logging.info("🔔 Bot triggered by web hit")
     threading.Thread(target=main).start()  # Runs in background to avoid timeout
-    return "Bot started! ✅"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)  # Required for Render
+    return "🎯 Bot started — check logs on Render"
